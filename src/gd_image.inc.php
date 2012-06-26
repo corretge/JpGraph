@@ -107,7 +107,8 @@ class Image {
             imageantialias($this->img,$aFlg);
         }
         else {
-            JpGraphError::RaiseL(25128);//('The function imageantialias() is not available in your PHP installation. Use the GD version that comes with PHP and not the standalone version.')
+// don't throw an error
+//            JpGraphError::RaiseL(25128);//('The function imageantialias() is not available in your PHP installation. Use the GD version that comes with PHP and not the standalone version.')
         }
     }
 
@@ -504,7 +505,7 @@ class Image {
 
                 $x -= $rect_width/2;
                 $x += sin($dir*M_PI/180)*$height;
-                $y += $rect_height/2;                
+                $y += $rect_height/2;
 
             } elseif( $dir >= 270 && $dir <= 360 ) {
 
@@ -755,7 +756,7 @@ class Image {
         // box is sometimes coinciding with the first pixel of the text
         //$bbox[0] -= 1;
         //$bbox[6] -= 1;
-        
+
         // For roatated text we need to add extra width for rotated
         // text since the kerning and stroking of the TTF is not the same as for
         // text at a 0 degree angle
@@ -908,7 +909,7 @@ class Image {
 
             if( $this->text_valign != 'basepoint' ) {
                 // Align x,y ot lower left corner of bbox
-                
+
 
                 if( $this->text_halign=='right' ) {
                     $x -= $width;
@@ -935,7 +936,7 @@ class Image {
                     // This is only support for text at 0 degree !!
                     // Do nothing the text is drawn at baseline by default
                 }
-            } 
+            }
             ImageTTFText ($this->img, $this->font_size, $dir, $x, $y,
                           $this->current_color,$this->font_file,$txt);
 
@@ -1337,7 +1338,7 @@ class Image {
         if( $this->use_anti_aliasing ) {
 //            JpGraphError::RaiseL(25129); // Anti-alias can not be used with dashed lines. Please disable anti-alias or use solid lines.
         }
-        
+
         $x1 = round($x1);
         $x2 = round($x2);
         $y1 = round($y1);
@@ -1365,12 +1366,12 @@ class Image {
         if( $this->use_anti_aliasing ) {
 //            JpGraphError::RaiseL(25129); // Anti-alias can not be used with dashed lines. Please disable anti-alias or use solid lines.
         }
-        
+
         $x1 = round($x1);
         $x2 = round($x2);
         $y1 = round($y1);
         $y2 = round($y2);
-        
+
         /*
         $dash_length *= $this->scale;
         $dash_space  *= $this->scale;
@@ -1749,11 +1750,11 @@ class Image {
             return imageline($im,$x1,$y1,$x2,$y2,$color);
         }
 
-        $angle=(atan2(($y1 - $y2), ($x2 - $x1))); 
+        $angle=(atan2(($y1 - $y2), ($x2 - $x1)));
 
         $dist_x = $weight * (sin($angle)) / 2;
         $dist_y = $weight * (cos($angle)) / 2;
-        
+
         $p1x=ceil(($x1 + $dist_x));
         $p1y=ceil(($y1 + $dist_y));
         $p2x=ceil(($x2 + $dist_x));
@@ -1800,12 +1801,12 @@ class Image {
             $pts[] = $x2 - $weight; $pts[] = $y2;
 
         } else {
-            
+
             var_dump($x1, $x2, $y1, $y2);
             $length = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
             var_dump($length);exit;
             exit;
-  
+
 /*
             $lean = ($y2 - $y1) / ($x2 - $x1);
             $lean2 = -1 / $lean;
@@ -1822,7 +1823,7 @@ class Image {
 //print_r($pts);exit;
         if (count($pts)/2 < 3) {
             return;
-        } 
+        }
 
         imagesetthickness($im, 1);
         imagefilledpolygon($im, $pts,count($pts)/2, $color);
@@ -1843,7 +1844,7 @@ class Image {
     }
 
     function CreateColorForImageSmoothArc($color) {
-        $alpha = $color >> 24 & 0xFF; 
+        $alpha = $color >> 24 & 0xFF;
         $red   = $color >> 16 & 0xFF;
         $green = $color >> 8 & 0xFF;
         $blue  = $color & 0xFF;
@@ -1915,13 +1916,13 @@ class Image {
             return $this->$variable_name;
         }
 
-        $variable_name = '_' . $name; 
+        $variable_name = '_' . $name;
 
         if (isset($this->$variable_name)) {
             return $this->$variable_name * SUPERSAMPLING_SCALE;
         } else {
             JpGraphError::RaiseL('25132', $name);
-        } 
+        }
     }
 
     function __set($name, $value) {
