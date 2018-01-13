@@ -135,13 +135,4 @@ define('DEFAULT_THEME_CLASS', 'UniversalTheme');
 define('SUPERSAMPLING', true);
 define('SUPERSAMPLING_SCALE', 1);
 
-//-----------------------------------------------------------------------
-// ITM-Custom properties
-//-----------------------------------------------------------------------
-
-// Allow o use CYRILLIC-font
-define('LANGUAGE_CYRILLIC', true);
-// Assume that encoding is 'WINDOWS-1251' 
-define('CYRILLIC_FROM_WINDOWS', true);
-define('LANGUAGE_CHARSET', 'UTF-8');
 ?>
